@@ -1,3 +1,31 @@
+const morseToLatin = {
+	'-': "T",
+	'--': "M",
+	'---': "O",
+	'--.': "G",
+	'--.-': "Q",
+	'--..': "Z",
+	'-.': "N",
+	'-.-': "K",
+	'-.--': "Y",
+	'-.-.': "C",
+	'-..': "D",
+	'-..-': "X",
+	'-...': "B",
+	'.': "E",
+	'.-': "A",
+	'.--': "W",
+	'.---': "J",
+	'.--.': "P",
+	'.-.': "R",
+	'.-..': "L",
+	'..': "I",
+	'..-': "U",
+	'..-.': "F",
+	'...': "S",
+	'...-': "V",
+	'....': "H"
+  }
 const latinToMorse = {
 	'A':'.-',
 	'B':'-...',
@@ -27,37 +55,42 @@ const latinToMorse = {
 	'Z':'--..'
 }
 
-const getLatinCharacterList = (text) => {
-    text.split('')
-    //console.log(text.split(''));
-}
-getLatinCharacterList("hello, world")
+/*const getLatinCharacterList = (text) => {
+	return text.split('');
+	console.log(text.split(''));
+}*/
+
+const getLatinCharacterList = (text) => text.split('');
+console.log(getLatinCharacterList("hello, world"));
 
 
 
 const translateLatinCharacter = (latinMorse) => {
-    latinToMorse[latinMorse]
+	return latinToMorse[latinMorse];
     //console.log(latinToMorse[latinMorse]);
 }
 translateLatinCharacter('A');
 
 
 const encode = (morseLatin) => {
-    const encodedText = getLatinCharacterList(morseLatin)
-    console.log(encodedText.latinToMorse[morseLatin])
-    /*for (let i = 0; i < encodedText.length; i++)
-        console.log(encodedText[i]);*/
+    const array = getLatinCharacterList(morseLatin)
+    const encodedText = array.map(char => translateLatinCharacter(char));
+	//console.log(encodedText)
+	return encodedText
 }
+encode("DANIEL");
 
-encode('HELLO');
 
-/*
-const encode = (morseLatin) => {
-    
-    encodedText = morseLatin.map(text => translateLatinCharacter(text));
+
+const getMorseCharacterList = (morseList) => {
+	return morseList.split(' ');
 }
+getMorseCharacterList();
 
 
-const characters = ["H", "E", "L", "L", "O"];
-const morseCharacters = characters.map(char => translateLatinCharacter(char));
-//console.log(morseCharacters);*/
+
+/*const translateMorseCharacter = () => {
+
+}
+translateMorseCharacter();
+*/

@@ -55,42 +55,53 @@ const latinToMorse = {
 	'Z':'--..'
 }
 
-/*const getLatinCharacterList = (text) => {
-	return text.split('');
-	console.log(text.split(''));
-}*/
-
+/*
+// ENCODE
 const getLatinCharacterList = (text) => text.split('');
-console.log(getLatinCharacterList("hello, world"));
-
-
-
-const translateLatinCharacter = (latinMorse) => {
-	return latinToMorse[latinMorse];
-    //console.log(latinToMorse[latinMorse]);
+const translateLatinCharacter = (text) => latinToMorse[text.toUpperCase()];
+const encode = (textToEncode) => {
+	const array = getLatinCharacterList(textToEncode);
+	const encodedText = array.map(word => translateLatinCharacter(word));
+	return encodedText.join(' ');
 }
-translateLatinCharacter('A');
+console.log(encode('je vais bien'));
 
 
-const encode = (morseLatin) => {
-    const array = getLatinCharacterList(morseLatin)
-    const encodedText = array.map(char => translateLatinCharacter(char));
-	//console.log(encodedText)
-	return encodedText
-}
-encode("DANIEL");
+// DECODE
+const getMorseCharacterList = (text) => text.split(' ');
+const translateMorseCharacter = (morse) => morseToLatin[morse];
+const decode = (textToDecode) => {
+  const array = textToDecode.split(' / ');
+  const decodedWords = array.map(word => {
+    return word.split(' ').map(morse => translateMorseCharacter(morse)).join('');  
+  });
+  return decodedWords.join(' ');
+};
 
-
-
-const getMorseCharacterList = (morseList) => {
-	return morseList.split(' ');
-}
-getMorseCharacterList();
-
-
-
-/*const translateMorseCharacter = () => {
-
-}
-translateMorseCharacter();
+console.log(decode('.--- . / ...- .- .. ... / -... .. . -. ')); 
 */
+
+// ENCODE
+const getLatinCharacterList = (text) => text.split(''); 
+const translateLatinCharacter = (text) => latinToMorse[text.toUpperCase()]; 
+const encode = (textToEncode) => { 
+    const array = getLatinCharacterList(textToEncode); 
+    const encodedText = array.map(word => translateLatinCharacter(word)); 
+    return encodedText.join(' ');  
+}
+console.log(encode('je vais bien'));
+
+
+
+// DECODE
+const getMorseCharacterList = (text) => text.split(' '); 
+const translateMorseCharacter = (morse) => morseToLatin[morse];
+const decode = (textToDecode) => {
+    const array = textToDecode.split(' / '); 
+    
+    const decodedWords = array.map(word => {
+        return word.split(' ').map(morse => translateMorseCharacter(morse)).join('');  
+    });
+    return decodedWords.join(' '); 
+};
+console.log(decode('.--- . / ...- .- .. ... / -... .. . -. ')); 
